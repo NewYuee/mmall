@@ -32,7 +32,7 @@ public class Cart implements Serializable {
 
     private Integer quantity;
 
-    private Integer cost;
+    private Float cost;
 
     private Integer userId;
 

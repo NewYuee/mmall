@@ -4,6 +4,7 @@ package com.ljy.mmall2.controller;
 import com.ljy.mmall2.service.ProductCategoryService;
 import com.ljy.mmall2.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,5 +40,14 @@ public class ProductController {
         modelAndView.addObject("productList",productService.findByCategoryId(type,id));
         return modelAndView;
     }
+    @GetMapping("/findById/{id}")
+    public ModelAndView findById(@PathVariable("id") Integer id){
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.setViewName("productDetail");
+        modelAndView.addObject("list",productCategoryService.getAllProductCategoryVO());
+        modelAndView.addObject("product",productService.getById(id));
+        return modelAndView;
+    }
+
 }
 

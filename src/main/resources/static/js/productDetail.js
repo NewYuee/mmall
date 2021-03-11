@@ -37,9 +37,13 @@ function reduce() {
 }
 
 //添加购物车
-function addCart(id,price){
-    var id = $("#productId").val();
-    var price = $("#productPrice").val();
+function addCart(productId,price){
+    var stockStr=$("#stock").text();
+    var stock=parseInt(stockStr);
+    if(stock==0){
+        alert("库存不足！");
+        return false;
+    }
     var quantity = $("#quantity").val();
-    window.location.href="settlement1.html";
+    window.location.href="/cart/add/"+productId+"/"+price+"/"+quantity;
 }

@@ -17,4 +17,10 @@ class ProductServiceTest {
         map.put("categorylevelthree_id",655);
         productService.listByMap(map).forEach(System.out::println);
     }
+
+    @Test
+    void get(){
+        System.out.println(productService.getById(733));
+    }
+
 }

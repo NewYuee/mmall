@@ -19,13 +19,13 @@
                 <ul class="cate_list">
                     <li th:each="product:${productList}">
                         <div class="name">
-                            <a href="/productDetail.html" th:text="${product.name}">商品</a>
+                            <a th:href="'/product/findById/'+${product.id}" th:text="${product.name}">商品</a>
                         </div>
                         <div class="price">
                             <font>￥<span th:text="${product.price}"></span></font> &nbsp;
                         </div>
                         <div class="img">
-                            <a href="/productDetail.html">
+                            <a th:href="'/product/findById/'+${product.id}">
                                 <img th:src="'/images/'+${product.fileName}" width="185"
                                      height="155" />
                             </a>
