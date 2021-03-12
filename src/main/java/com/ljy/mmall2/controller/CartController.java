@@ -55,8 +55,14 @@ public class CartController {
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("settlement1");
         User user=(User) session.getAttribute("user");
-        modelAndView.addObject("list",cartService.findAllCartVOByUserId(user.getId()));
+        modelAndView.addObject("cartList",cartService.findAllCartVOByUserId(user.getId()));
         return modelAndView;
+    }
+
+    @GetMapping("/deleteById/{id}")
+    public String deleteById(@PathVariable("id") Integer id){
+        cartService.removeById(id);
+        return "redirect:/cart/findAllcart";
     }
 }
 
