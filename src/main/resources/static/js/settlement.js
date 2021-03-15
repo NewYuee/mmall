@@ -65,15 +65,26 @@ function addQuantity(obj) {
     quantity++;
     let price=parseFloat($(".productPrice").eq(index).val());
     let cost=quantity*price;
-    $(".qprice").eq(index).text('￥'+cost);
-    $(".car_ipt").eq(index).val(quantity);
-    let array = $(".qprice");
-    let totalCost = 0;
-    for(let i = 0;i < array.length;i++){
-        let val = parseInt($(".qprice").eq(i).html().substring(1));
-        totalCost += val;
-    }
-    $("#totalprice").html("￥"+totalCost);
+    let id=parseInt($(".id").eq(index).val());
+    //Ajax动态更新数据库
+    $.ajax({
+        url:"/cart/update/"+id+"/"+quantity+"/"+cost,
+        type:"POST",
+        success:function (data) {
+            if(data == "success"){
+                $(".qprice").eq(index).text('￥'+cost);
+                $(".car_ipt").eq(index).val(quantity);
+
+                let array = $(".qprice");
+                let totalCost = 0;
+                for(let i = 0;i < array.length;i++){
+                    let val = parseInt($(".qprice").eq(i).html().substring(1));
+                    totalCost += val;
+                }
+                $("#totalprice").html("￥"+totalCost);
+            }
+        }
+    });
 }
 
 //商品数量--
@@ -86,33 +97,44 @@ function subQuantity(obj) {
         return false;
     }
     quantity--;
-    $(".car_ipt").eq(index).val(quantity);
-    let price=parseFloat($(".productPrice").eq(index).val());
-    let cost=quantity*price;
-    $(".qprice").eq(index).text('￥'+cost);
+    let price = parseFloat($(".productPrice").eq(index).val());
+    let cost = quantity * price
+    let id = parseInt($(".id").eq(index).val());
+    $.ajax({
+        url:"/cart/update/"+id+"/"+quantity+"/"+cost,
+        type:"POST",
+        success:function (data) {
+            if(data == "success"){
+                $(".qprice").eq(index).text('￥'+cost);
+                $(".car_ipt").eq(index).val(quantity);
 
-    let array = $(".qprice");
-    let totalCost = 0;
-    for(let i = 0;i < array.length;i++){
-        let val = parseInt($(".qprice").eq(i).html().substring(1));
-        totalCost += val;
-    }
-    $("#totalprice").html("￥"+totalCost);
+                let array = $(".qprice");
+                let totalCost = 0;
+                for(let i = 0;i < array.length;i++){
+                    let val = parseInt($(".qprice").eq(i).html().substring(1));
+                    totalCost += val;
+                }
+                $("#totalprice").html("￥"+totalCost);
+            }
+        }
+    });
 }
 
 //移出购物车
-// function removeCart(obj){
-//     var index = $(".delete").index(obj);
-//     var id = $(".id").eq(index).val();
-//     if(confirm("是否确定要删除？")){
-//         window.location.href = "/product/removeCart/"+id;
-//     }
-// }
 function removeCart(obj) {
     let index=$(".delete").index(obj);
     let id=parseInt($(".id").eq(index).val());
     if(confirm("是否确定删除？")){
         window.location.href="/cart/deleteById/"+id;
+    }
+}
+
+function settlement2() {
+    var totalCost=$("#totalprice").text();
+    if(totalCost=="￥0"){
+        alert("购物车为空，不能结算！");
+    }else{
+        window.location.href="/cart/settlement2";
     }
 
 }

@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.ljy.mmall2.enums.GenderEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -49,7 +51,9 @@ public class User implements Serializable {
       /**
      * 性别(1:男 0：女)
      */
-      private Integer gender;
+      private GenderEnum gender;
+      @TableField(exist = false)
+      private Integer genderCode;
 
       /**
      * 身份证号

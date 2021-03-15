@@ -12,3 +12,4 @@ mybatis-plus:
 #  打印sql语句
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-enums-package: com.ljy.mmall2.enums
