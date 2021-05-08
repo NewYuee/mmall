@@ -72,7 +72,7 @@ public class User implements Serializable {
 
     private String fileName;
 
-      @TableField(fill = FieldFill.INSERT)
+      @TableField(fill = FieldFill.INSERT)//该字段插入时自动填充
       private LocalDateTime createTime;
 
       @TableField(fill = FieldFill.INSERT_UPDATE)

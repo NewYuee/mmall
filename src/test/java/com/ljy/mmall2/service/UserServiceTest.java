@@ -1,5 +1,6 @@
 package com.ljy.mmall2.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ljy.mmall2.entity.User;
 import com.ljy.mmall2.enums.GenderEnum;
 import org.junit.jupiter.api.Test;
@@ -15,11 +16,16 @@ class UserServiceTest {
     @Test
     void test(){
         User user=new User();
-        user.setLoginName("jss");
-        user.setGender(GenderEnum.MAN);
-        user.setPassword("123");
-        user.setUserName("2rf");
+        user.setLoginName("js22saa");
+        user.setGenderCode(1);
+        user.setPassword("123456");
+        user.setUserName("2rf2a");
         System.out.println(userService.save(user));
+        QueryWrapper wrapper=new QueryWrapper();
+        wrapper.eq("login_name","js22saa");
+        System.out.println(userService.getOne(wrapper));
+
+
     }
 
     @Test
