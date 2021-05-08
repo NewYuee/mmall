@@ -1,1 +1,1 @@
-# 基于SpringBoot+Mybatis+Thymleaf实现的一个XX商城
+# 基于SpringBoot+Mybatis-Plus+Thymleaf实现的一个XX商城
